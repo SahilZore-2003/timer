@@ -1,0 +1,112 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+</head>
+
+<body>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            background-color: black;
+        }
+
+        .second,
+        .miniute {
+            font-size: 10rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .content{
+            cursor: pointer;
+        }
+
+        @media (min-width:600px){
+            .content{
+                display: flex;
+                gap: 1rem;
+                padding: 2rem;
+            }
+           
+        }
+    </style>
+
+
+
+    <div class="container">
+        <div class="content">
+            <div class="miniute">
+                00
+            </div>
+            <hr>
+            <div class="second">
+                00
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const second = document.querySelector('.second');
+        const miniute = document.querySelector('.miniute');
+        let seconds = 1;
+        let miniutes = 0
+
+        let isStarting = true;
+        let timer;
+
+        window.addEventListener("click", () => {
+
+            if (isStarting) {
+
+                 timer = setInterval(() => {
+                    if (seconds < 10) {
+                        second.innerHTML = "0" + seconds;
+                    } else {
+                        second.innerHTML = seconds;
+                    }
+
+                    if (seconds == 60) {
+                        seconds = 0;
+                        miniutes++;
+                        if (miniutes < 10) {
+                            miniute.innerHTML = "0" + miniutes;
+                        } else {
+                            miniute.innerHTML = miniutes;
+                        }
+                    }
+
+                    seconds++;
+
+                    isStarting = false;
+
+                }, 1000)
+
+            }else{
+                clearInterval(timer);
+                isStarting = true;
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>
